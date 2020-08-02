@@ -20,11 +20,22 @@ class ComposerStaticInitadf0ccae1a1fac3102e80c7fd5693185
         ),
     );
 
+    public static $classMap = array (
+        'comunication\\admin\\controllers\\comunication' => __DIR__ . '/../..' . '/src/admin/controllers/comunication.php',
+        'comunication\\admin\\controllers\\comunicationDelete' => __DIR__ . '/../..' . '/src/admin/controllers/comunicationDelete.php',
+        'comunication\\admin\\controllers\\comunicationNew' => __DIR__ . '/../..' . '/src/admin/controllers/comunicationNew.php',
+        'comunication\\admin\\controllers\\comunicationUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/comunicationUpdate.php',
+        'comunication\\common\\models\\comunications' => __DIR__ . '/../..' . '/src/common/models/comunications.php',
+        'comunication\\common\\models\\groups' => __DIR__ . '/../..' . '/src/common/models/groups.php',
+        'comunication\\common\\models\\qualitys' => __DIR__ . '/../..' . '/src/common/models/qualitys.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitadf0ccae1a1fac3102e80c7fd5693185::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitadf0ccae1a1fac3102e80c7fd5693185::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitadf0ccae1a1fac3102e80c7fd5693185::$classMap;
 
         }, null, ClassLoader::class);
     }
