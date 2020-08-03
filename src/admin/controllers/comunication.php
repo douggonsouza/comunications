@@ -4,6 +4,7 @@
 
     use driver\control\action;
     use driver\helper\html;
+    use data\resource\resource;
     use comunication\common\models\comunications;
     use comunication\common\models\qualitys;
     use comunication\common\models\groups;
@@ -30,23 +31,26 @@
         {
             self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
-            $search = array();
+            $search = array('cmn.active = 1');
             if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
                 $search = $this->search($_POST);
             }
     
-            $this->param('registros', null);
-            $comunications = (new comunications())->seek($search);
+            $this->param('registros', new comunications());
+            $comunications = (new comunications())->seek(implode(' AND ',$search));
             if(!$comunications->isNew()){
                 $this->param('registros', $comunications);
             }
 
             // qualitys
-            $this->params('qualitys', (new qualitys())->dicionary());
+            $qualitys = (new qualitys())->dicionary();
+            $this->param('qualitys', $qualitys);
             // groups
-            $this->params('groups', (new groups())->dicionary());
+            $groups = (new groups())->dicionary();
+            $this->param('groups', $groups);
             // users
-            $this->params('users', (new users())->dicionary());
+            $users =  (new users())->dicionary();
+            $this->param('users', $users);
     
             return $this->view(array(
                 'html' => new html()

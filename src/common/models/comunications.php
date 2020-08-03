@@ -111,6 +111,48 @@ class comunications extends model
         );
     }
 
+    /**
+     * Carrega a comunicações da qualidade para o usuário
+     *
+     * @param integer $quality
+     * @param integer $user
+     * @return void
+     */
+    public function comunicationByQuality(int $quality, int $user)
+    {
+        if(!isset($quality) || empty($quality)){
+            $this->setError('Negado nulo para o parâmetro quality.');
+            return null; 
+        }
+
+        if(!isset($user) || empty($user)){
+            $this->setError('Negado nulo para o parâmetro user.');
+            return null;
+        }
+
+        $sql = sprintf("SELECT 
+                cmn.*,
+                qul.label quality_label,
+                usr.name user_name
+            FROM comunications AS cmn
+            JOIN qualitys AS qul ON qul.quality_id = cmn.quality_id AND qul.active = 1
+            JOIN users AS usr ON usr.user_id = cmn.user_id AND usr.active = 1
+            WHERE
+                cmn.active = 1
+                AND cmn.quality_id = %1$d
+                AND cmn.user_id = %2$d;",
+            $quality,
+            $user
+        );
+
+        if(!$this->query($sql)){
+            $this->setError('Erro na execução da query.');
+            return null;
+        }
+
+        return $this;
+    }
+
     public function group()
     {
         if(empty($this->getField('group_id'))){
