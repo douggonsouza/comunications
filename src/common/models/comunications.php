@@ -139,8 +139,8 @@ class comunications extends model
             JOIN users AS usr ON usr.user_id = cmn.user_id AND usr.active = 1
             WHERE
                 cmn.active = 1
-                AND cmn.quality_id = %1$d
-                AND cmn.user_id = %2$d;",
+                AND cmn.quality_id = %1\$d
+                AND cmn.user_id = %2\$d;",
             $quality,
             $user
         );
