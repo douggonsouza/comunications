@@ -5,10 +5,7 @@
     use driver\control\action;
     use driver\helper\html;
     use data\resource\resource;
-    use comunication\common\models\comunications;
     use comunication\common\models\qualitys;
-    use comunication\common\models\groups;
-    use heartwood\common\models\users;
 
     class quality extends action
     {
@@ -36,21 +33,11 @@
                 $search = $this->search($_POST);
             }
     
-            $this->param('registros', new comunications());
-            $comunications = (new comunications())->seek(implode(' AND ',$search));
-            if(!$comunications->isNew()){
-                $this->param('registros', $comunications);
+            $this->param('registros', new qualitys());
+            $quality = (new qualitys())->seek(implode(' AND ',$search));
+            if(!$quality->isNew()){
+                $this->param('registros', $quality);
             }
-
-            // qualitys
-            $qualitys = (new qualitys())->dicionary();
-            $this->param('qualitys', $qualitys);
-            // groups
-            $groups = (new groups())->dicionary();
-            $this->param('groups', $groups);
-            // users
-            $users =  (new users())->dicionary();
-            $this->param('users', $users);
     
             return $this->view(array(
                 'html' => new html()
@@ -71,20 +58,12 @@
                 return $search;
             }
 
-            if(isset($_POST['quality_id']) && !empty($_POST['quality_id'])){
-                $search['quality_id'] = "quality_id = ".$_POST['quality_id'];
+            if(isset($_POST['label']) && !empty($_POST['label'])){
+                $search['label'] = "label like '%".$_POST['quality_id']."%'";
             }
 
-            if(isset($_POST['group_id']) && !empty($_POST['group_id'])){
-                $search['group_id'] = "group_id = ".$_POST['group_id'];
-            }
-
-            if(isset($_POST['user_id']) && !empty($_POST['user_id'])){
-                $search['user_id'] = "user_id = ".$_POST['user_id'];
-            }
-
-            if(isset($_POST['title']) && !empty($_POST['title'])){
-                $search['title'] = "title like '%".$_POST['title']."%'";
+            if(isset($_POST['description']) && !empty($_POST['description'])){
+                $search['description'] = "description like '%".$_POST['description']."%'";
             }
 
             return $search;
