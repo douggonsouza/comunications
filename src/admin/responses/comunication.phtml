@@ -19,35 +19,27 @@
                         <div class="card-body card-block">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="row form-group">
-                                    <div class="col-5">
+                                    <div class="col-4">
                                         <div class="form-group">
-                                            <label for="company" class=" form-control-label">Qualidade</label>
+                                            <label for="quality_id" class=" form-control-label">Qualidade</label>
                                             <?= $html->select('quality_id', $qualitys, array('class' => 'form-control', 'id' => 'quality_id')); ?>
                                         </div>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-4">
                                         <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Grupo</label>
-                                            <?= $html->select('group_id', $groups, array('class' => 'form-control', 'id' => 'group_id')); ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Usuário</label>
+                                            <label for="user_id" class=" form-control-label">Usuário</label>
                                             <?= $html->select('user_id', $users, array('class' => 'form-control', 'id' => 'user_id')); ?>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Título</label>
+                                            <label for="title" class=" form-control-label">Título</label>
                                             <input type="text" id="title" name="title" placeholder="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" name="cGVybWlzc2lvbkxpc3Q=" class="btn btn-primary btn-sm">
+                                    <button type="submit" name="c2VhcmNoQ29tdW5pY2F0aW9ucw==" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Buscar
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">
@@ -65,7 +57,6 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Qualidade</th>
-                                    <th>Grupo</th>
                                     <th>Usuário</th>
                                     <th>Título</th>
                                     <th>Delete</th>
@@ -77,9 +68,8 @@
                                         while(!$registros->isEof()){
                                 ?>
                                 <tr>
-                                    <td><a href="<?= _root ?>/admin/comunications/comunicationUpdate/<?= $registros->getField('comunication_id') ?>"><?= $registros->getField('comunication_id'); ?></a></td>
+                                    <td><a href="<?= _root ?>/admin/comunications/comunication/<?= $registros->getField('comunication_id') ?>"><?= $registros->getField('comunication_id'); ?></a></td>
                                     <td><?= $registros->getField('quality_label') ?></td>
-                                    <td><?= $registros->getField('group_label') ?></td>
                                     <td><?= $registros->getField('user_name') ?></td>
                                     <td><?= $registros->getField('title') ?></td>
                                     <td><a class="btn btn-sm btn-danger" href="<?= _root ?>/admin/comunications/comunicationDelete/<?= $registros->getField('comunication_id') ?>" target="_blank">Delete</a></td>

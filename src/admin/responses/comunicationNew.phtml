@@ -16,15 +16,6 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="group_id" class=" form-control-label">Grupos</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <?= $html->select('group_id', $groups, array('class' => 'form-control', 'id' => 'group_id')); ?>
-                                        <small class="form-text text-muted">Grupo da comunicação</small>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
                                         <label for="user_id" class=" form-control-label">Usuários</label>
                                     </div>
                                     <div class="col col-md-9">
@@ -46,8 +37,7 @@
                                         <label for="text-input" class=" form-control-label">Mensagem</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <textarea id="message" name="message" rows="5" class="form-control">
-                                        </textarea>
+                                        <textarea id="message" name="message" rows="5" class="form-control"></textarea>
                                         <small class="form-text text-muted">Mensagem da comunicação</small>
                                     </div>
                                 </div>

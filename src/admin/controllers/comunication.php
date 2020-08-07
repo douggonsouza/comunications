@@ -4,6 +4,7 @@
 
     use driver\control\action;
     use driver\helper\html;
+    use alerts\alerts\alerts;
     use data\resource\resource;
     use comunication\common\models\comunications;
     use comunication\common\models\qualitys;
@@ -31,30 +32,22 @@
         {
             self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
-            $search = array('cmn.active = 1');
-            if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
-                $search = $this->search($_POST);
+            $this->param('html', new html());
+            $this->param('qualitys', (new qualitys())->dicionary());
+            $this->param('users', (new users())->dicionary());
+
+            $search = $this->where();
+            if(array_key_exists('c2VhcmNoQ29tdW5pY2F0aW9ucw==',$_POST)){
+                $search = $this->where($_POST);
             }
     
             $this->param('registros', new comunications());
-            $comunications = (new comunications())->seek(implode(' AND ',$search));
+            $comunications = (new comunications())->seek($search);
             if(!$comunications->isNew()){
                 $this->param('registros', $comunications);
             }
 
-            // qualitys
-            $qualitys = (new qualitys())->dicionary();
-            $this->param('qualitys', $qualitys);
-            // groups
-            $groups = (new groups())->dicionary();
-            $this->param('groups', $groups);
-            // users
-            $users =  (new users())->dicionary();
-            $this->param('users', $users);
-    
-            return $this->view(array(
-                'html' => new html()
-            ));
+            return $this->view();
         }
 
         /**
@@ -63,7 +56,7 @@
          * @param array $post
          * @return void
          */
-        protected function search(array $post)
+        protected function where(array $post = null)
         {
             $search = array('cmn.active = 1');
 
@@ -71,20 +64,16 @@
                 return $search;
             }
 
-            if(isset($_POST['quality_id']) && !empty($_POST['quality_id'])){
-                $search['quality_id'] = "quality_id = ".$_POST['quality_id'];
+            if(isset($post['quality_id']) && !empty($post['quality_id'])){
+                $search['quality_id'] = "quality_id = ".$post['quality_id'];
             }
 
-            if(isset($_POST['group_id']) && !empty($_POST['group_id'])){
-                $search['group_id'] = "group_id = ".$_POST['group_id'];
+            if(isset($post['user_id']) && !empty($post['user_id'])){
+                $search['user_id'] = "user_id = ".$post['user_id'];
             }
 
-            if(isset($_POST['user_id']) && !empty($_POST['user_id'])){
-                $search['user_id'] = "user_id = ".$_POST['user_id'];
-            }
-
-            if(isset($_POST['title']) && !empty($_POST['title'])){
-                $search['title'] = "title like '%".$_POST['title']."%'";
+            if(isset($post['title']) && !empty($post['title'])){
+                $search['title'] = "title like '%".$post['title']."%'";
             }
 
             return $search;

@@ -28,7 +28,7 @@
         {
             self::setLayout(self::getHeartwoodLayouts().'/cooladmin1.phtml');
 
-            $search = array('cmn.active = 1');
+            $search = array('active = 1');
             if(array_key_exists('cHJvZmlsZVVwZGF0ZQ==',$_POST)){
                 $search = $this->search($_POST);
             }

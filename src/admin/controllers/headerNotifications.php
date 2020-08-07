@@ -6,7 +6,7 @@
     use comunication\common\models\comunications;
     use comunication\common\managments\date;
 
-    class headerComunications extends action
+    class headerNotifications extends action
     {
         const _LOCAL = __DIR__;
 
@@ -18,16 +18,12 @@
          */
         public function main(array $info)
         {
-            self::setLayout(__DIR__.'/../responses/headerComunications.phtml');
+            self::setLayout(__DIR__.'/../responses/headerNotifications.phtml');
 
             if(empty(new comunications())){
                 return $this->view(array('isModule' => false));
             }
 
-            // comments
-            $this->param('comments', (new comunications())->comunicationByQuality(1, 1));
-            // e-mails
-            $this->param('emails', (new comunications())->comunicationByQuality(2, 1));
             // notifications
             $this->param('notifications',(new comunications())->comunicationByQuality(3, 1));
 

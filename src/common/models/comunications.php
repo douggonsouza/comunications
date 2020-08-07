@@ -50,12 +50,6 @@ class comunications extends model
                     'type'  => 'integer',
                     'limit' => 11,
                 ),
-                'group' => array(
-                    'label' => 'Grupo',
-                    'pk'    => false,
-                    'type'  => 'integer',
-                    'limit' => 11,
-                ),
                 'title' => array(
                     'label' => 'Título',
                     'pk'    => false,
@@ -74,12 +68,6 @@ class comunications extends model
                     'type'  => 'varchar',
                     'limit' => 255,
                 ),
-                'read' => array(
-                    'label' => 'Lido',
-                    'pk'    => false,
-                    'type'  => 'integer',
-                    'limit' => 1,
-                )
             ),
         );
     }
@@ -90,24 +78,25 @@ class comunications extends model
      * @param string $where
      * @return string
      */
-    public function getSeek(string $where = 'cmn.active = 1')
+    public function sqlSeek(array $where = null)
     {
+        if(!isset($where) || empty($where)){
+            $where = array('cmn.active = 1');
+        }
+
         return sprintf("SELECT 
                 cmn.comunication_id,
                 cmn.title,
                 cmn.quality_id,
                 qul.label quality_label,
-                cmn.group_id,
-                grp.label group_label,
                 cmn.user_id,
                 usr.name 'user_name'
             FROM comunications AS cmn
             JOIN qualitys AS qul ON qul.quality_id = cmn.quality_id AND qul.active = 1
-            LEFT JOIN groups AS grp ON grp.group_id = cmn.group_id AND grp.active = 1
             LEFT JOIN users AS usr ON usr.user_id = cmn.user_id AND usr.active = 1
             WHERE
                 %s;",
-            $where
+            implode(' AND ', $where)
         );
     }
 
