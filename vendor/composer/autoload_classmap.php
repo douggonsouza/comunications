@@ -11,6 +11,7 @@ return array(
     'comunication\\admin\\controllers\\comunicationNew' => $baseDir . '/src/admin/controllers/comunicationNew.php',
     'comunication\\admin\\controllers\\comunicationUpdate' => $baseDir . '/src/admin/controllers/comunicationUpdate.php',
     'comunication\\admin\\controllers\\headerComunications' => $baseDir . '/src/admin/controllers/headerComunications.php',
+    'comunication\\admin\\controllers\\headerMobileNotifications' => $baseDir . '/src/admin/controllers/headerMobileNotifications.php',
     'comunication\\admin\\controllers\\headerNotifications' => $baseDir . '/src/admin/controllers/headerNotifications.php',
     'comunication\\admin\\controllers\\quality' => $baseDir . '/src/admin/controllers/quality.php',
     'comunication\\admin\\controllers\\qualityDelete' => $baseDir . '/src/admin/controllers/qualityDelete.php',
