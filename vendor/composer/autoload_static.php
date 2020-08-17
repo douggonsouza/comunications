@@ -26,6 +26,7 @@ class ComposerStaticInitadf0ccae1a1fac3102e80c7fd5693185
         'comunication\\admin\\controllers\\comunicationNew' => __DIR__ . '/../..' . '/src/admin/controllers/comunicationNew.php',
         'comunication\\admin\\controllers\\comunicationUpdate' => __DIR__ . '/../..' . '/src/admin/controllers/comunicationUpdate.php',
         'comunication\\admin\\controllers\\headerComunications' => __DIR__ . '/../..' . '/src/admin/controllers/headerComunications.php',
+        'comunication\\admin\\controllers\\headerMobileComunications' => __DIR__ . '/../..' . '/src/admin/controllers/headerMobileComunications.php',
         'comunication\\admin\\controllers\\headerMobileNotifications' => __DIR__ . '/../..' . '/src/admin/controllers/headerMobileNotifications.php',
         'comunication\\admin\\controllers\\headerNotifications' => __DIR__ . '/../..' . '/src/admin/controllers/headerNotifications.php',
         'comunication\\admin\\controllers\\quality' => __DIR__ . '/../..' . '/src/admin/controllers/quality.php',
