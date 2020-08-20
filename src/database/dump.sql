@@ -1,6 +1,5 @@
 
 DROP TABLE IF EXISTS `comunications`;
-DROP TABLE IF EXISTS `groups`;
 DROP TABLE IF EXISTS `qualitys`;
 
 CREATE TABLE `qualitys` (
@@ -26,5 +25,3 @@ CREATE TABLE `comunications` (
   KEY `fk_comunications_1_idx` (`quality_id`),
   CONSTRAINT `fk_comunications_1` FOREIGN KEY (`quality_id`) REFERENCES `qualitys` (`quality_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
